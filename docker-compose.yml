@@ -1,0 +1,31 @@
+version: "2"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: googletrends_nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./server/server-static:/data/server-static
+    depends_on:
+      - client
+
+  client:
+    build: client
+    container_name: googletrends_client
+    restart: always
+    ports:
+      - "3000:3000"
+    entrypoint: ["./docker-entrypoint.sh"]
+    depends_on:
+      - server
+
+  server:
+    build: server
+    container_name: googletrends_server
+    restart: always
+    ports:
+      - "8000:8000"
+    entrypoint: ["./docker-entrypoint.sh"]

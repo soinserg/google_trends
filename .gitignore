@@ -1,0 +1,12 @@
+*.*~
+*.log
+*.pot
+__pycache__/
+*.sqlite
+*.sublime-project
+*.sublime-workspace
+.idea/
+server/server/settings_local.py
+server/server-static/
+client/node_modules
+client/build
